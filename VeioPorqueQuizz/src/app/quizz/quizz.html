@@ -1,0 +1,50 @@
+<div class="container mt-5">
+
+  <div class="card shadow" *ngIf="!finished">
+
+    <div class="card-header bg-primary text-white">
+      <h4>Pergunta {{currentQuestionIndex + 1}}</h4>
+    </div>
+
+    <div class="card-body">
+
+      <h5 class="card-title mb-4">
+        {{currentQuestion.statement}}
+      </h5>
+
+      <div class="d-grid gap-2">
+
+        <button
+          class="btn btn-outline-primary"
+          *ngFor="let alt of currentQuestion.alternatives"
+          (click)="answer(alt)">
+
+          {{alt.text}}
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card text-center shadow" *ngIf="finished">
+
+    <div class="card-body">
+
+      <h2 class="text-success">Quiz Finalizado 🎉</h2>
+
+      <h4 class="mt-3">
+        Pontuação: {{score}} / {{questions.length}}
+      </h4>
+
+      <button class="btn btn-primary mt-3" routerLink="/">
+        Voltar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
