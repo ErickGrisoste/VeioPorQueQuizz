@@ -13,4 +13,8 @@ export class ListarQuizzes {
 
   constructor(public quizService: QuizService) {}
 
+  pegarId(quizId: any){
+    localStorage.setItem("quizId", quizId)
+  }
+
 }

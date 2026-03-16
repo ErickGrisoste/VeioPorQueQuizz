@@ -43,6 +43,7 @@ export class QuizService {
 
   salvarLocalStorage() {
     localStorage.setItem("quizzes", JSON.stringify(this.quizzes));
+    console.log(JSON.stringify(localStorage.getItem("quizzes")));
   }
 
   carregarLocalStorage() {
