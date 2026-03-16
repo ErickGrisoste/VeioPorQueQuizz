@@ -1,27 +1,37 @@
 <div class="container vh-100 d-flex align-items-center justify-content-center">
-  <div class="card shadow-lg p-4" style="width: 500px;">
+
+  <div class="card shadow-lg p-4" style="width:500px"
+       *ngIf="quizService.quizAtual">
+
+    <div class="progress mb-4">
+
+      <div class="progress-bar"
+           role="progressbar"
+           [style.width.%]="(perguntaAtual / quizService.quizAtual.perguntas.length) * 100">
+      </div>
+
+    </div>
 
     <h3 class="text-center mb-4">
-      Pergunta 1
+      Pergunta {{ perguntaAtual + 1 }}
     </h3>
 
     <p class="lead text-center mb-4">
-      {{ pergunta }}
+      {{ quizService.quizAtual.perguntas[perguntaAtual]?.enunciado }}
     </p>
 
     <div class="d-grid gap-3">
 
-      <button class="btn btn-outline-primary" *ngFor="let opcao of opcoes">
+      <button
+        class="btn btn-outline-primary"
+        *ngFor="let opcao of quizService.quizAtual.perguntas[perguntaAtual]?.opcoes; let i = index"
+        (click)="responder(i)"
+      >
         {{ opcao }}
       </button>
 
     </div>
 
-    <div class="text-center mt-4">
-      <button class="btn btn-success" routerLink="/resultado">
-        Finalizar Quiz
-      </button>
-    </div>
-
   </div>
+
 </div>

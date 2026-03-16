@@ -1,23 +1,38 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { QuizService } from '../../services/quiz-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './quiz.html',
-  styleUrl: './quiz.css'
+  imports: [CommonModule],
+  templateUrl: './quiz.html'
 })
 export class Quiz {
 
-  pergunta = "Qual linguagem é usada para desenvolver aplicações Angular?";
+  perguntaAtual = 0;
+  pontuacao = 0;
 
-  opcoes = [
-    "Java",
-    "Python",
-    "TypeScript",
-    "C#"
-  ];
+  constructor(
+    public quizService: QuizService,
+    private router: Router
+  ) {}
+
+  responder(opcao: number) {
+
+    const pergunta = this.quizService.quizAtual.perguntas[this.perguntaAtual];
+
+    if (opcao === pergunta.correta) {
+      this.pontuacao++;
+    }
+
+    this.perguntaAtual++;
+
+    if (this.perguntaAtual >= this.quizService.quizAtual.perguntas.length) {
+      this.router.navigate(['/resultado']);
+    }
+
+  }
 
 }

@@ -1,0 +1,22 @@
+<div class="container mt-5">
+
+  <h2 class="mb-4 text-center">
+    Quizzes Criados
+  </h2>
+
+  <div class="card mb-3 p-3"
+       *ngFor="let quiz of quizService.quizzes">
+
+    <h4>{{ quiz.titulo }}</h4>
+
+    <p>{{ quiz.descricao }}</p>
+
+    <button
+      class="btn btn-primary"
+      routerLink="/quiz">
+      Jogar
+    </button>
+
+  </div>
+
+</div>
