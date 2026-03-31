@@ -9,6 +9,7 @@ import { CriarQuiz } from './pages/criar-quiz/criar-quiz';
 import { CriarPergunta } from './pages/criar-pergunta/criar-pergunta';
 import { ListarQuizzes } from './pages/listar-quiz/listar-quiz';
 import { Avaliacao } from './pages/avaliacao/avaliacao';
+import { CriarUsuario } from './pages/criar-usuario/criar-usuario';
 
 export const serverRoutes: Routes = [];
 
@@ -23,5 +24,6 @@ export const routes: Routes = [
   { path: 'criar-quiz', component: CriarQuiz },
   { path: 'criar-pergunta', component: CriarPergunta },
   { path: 'quizzes', component: ListarQuizzes },
-  { path: 'avaliacao', component: Avaliacao }
+  { path: 'avaliacao', component: Avaliacao },
+  { path: 'cadastro', component: CriarUsuario }
 ];
