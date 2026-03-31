@@ -1,1 +1,56 @@
-<p>sobre works!</p>
+<div class="container py-5 mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <!-- card main -->
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden mb-5 animate-fade-in">
+        <div class="card-header bg-primary bg-gradient text-white p-4 text-center border-0">
+          <h2 class="mb-0 fw-bold">Sobre o Projeto</h2>
+          <p class="mb-0 mt-2 opacity-75">Sua opinião é muito importante para nós!</p>
+        </div>
+
+        <div class="card-body p-4 p-md-5">
+          <h5 class="card-title text-center text-secondary mb-4">Deixe sua Sugestão</h5>
+
+          <form (ngSubmit)="enviarSugestao()">
+            <div class="form-floating mb-4">
+              <textarea class="form-control rounded-3" id="sugestaoTextarea" placeholder="Escreva sua sugestão aqui..."
+                name="sugestao" [(ngModel)]="sugestao" style="height: 120px; resize: none;" required>
+              </textarea>
+              <label for="sugestaoTextarea">Escreva sua sugestão aqui...</label>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit"
+                class="btn btn-primary btn-lg rounded-pill fw-bold text-uppercase shadow-sm transition-all primary-btn-hover"
+                [disabled]="!sugestao.trim()">
+                <i class="bi bi-send-fill me-2"></i> Enviar Sugestão
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Lista -->
+      <div *ngIf="sugestoes.length > 0" class="animate-slide-up">
+        <h4 class="text-secondary mb-3 fw-bold d-flex align-items-center">
+          <span
+            class="bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center me-2 shadow-sm"
+            style="width: 32px; height: 32px; font-size: 14px;">
+            {{ sugestoes.length }}
+          </span>
+          Sugestões Enviadas
+        </h4>
+
+        <div class="list-group shadow-sm rounded-4 overflow-hidden border-0">
+          <div *ngFor="let s of sugestoes; let i = index"
+            class="list-group-item list-group-item-action border-0 border-bottom p-4 suggestion-item">
+            <div class="d-flex w-100 justify-content-between align-items-center">
+              <p class="mb-0 text-dark">{{ s }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
