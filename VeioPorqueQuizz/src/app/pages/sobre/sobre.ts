@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sobre',
@@ -10,30 +11,36 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './sobre.css',
 })
 export class Sobre implements OnInit {
+  private http = inject(HttpClient); 
+  private readonly API_URL = 'http://localhost:3000/sugestoes';
+
   sugestao: string = '';
-  sugestoes: string[] = [];
+  sugestoes: any[] = []; 
 
   ngOnInit(): void {
     this.carregarSugestoes();
   }
 
   carregarSugestoes(): void {
-    const data = localStorage.getItem('sugestoes_veio_porque_quizz');
-    console.log(JSON.stringify(data));
-    if (data) {
-      try {
-        this.sugestoes = JSON.parse(data);
-      } catch (e) {
-        this.sugestoes = [];
-      }
-    }
+    this.http.get<any[]>(this.API_URL).subscribe({
+      next: (data) => {
+        this.sugestoes = data;
+      },
+      error: (err) => console.error('Erro ao carregar:', err)
+    });
   }
 
   enviarSugestao(): void {
     if (!this.sugestao.trim()) return;
 
-    this.sugestoes.push(this.sugestao.trim());
-    localStorage.setItem('sugestoes_veio_porque_quizz', JSON.stringify(this.sugestoes));
-    this.sugestao = '';
+    const novaSugestao = { texto: this.sugestao.trim() };
+
+    this.http.post(this.API_URL, novaSugestao).subscribe({
+      next: (response) => {
+        this.sugestoes.push(response); 
+        this.sugestao = ''; 
+      },
+      error: (err) => alert('Erro ao salvar sugestão!')
+    });
   }
 }
