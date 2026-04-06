@@ -10,7 +10,7 @@ import { CriarPergunta } from './pages/criar-pergunta/criar-pergunta';
 import { ListarQuizzes } from './pages/listar-quiz/listar-quiz';
 import { Avaliacao } from './pages/avaliacao/avaliacao';
 import { CriarUsuario } from './pages/criar-usuario/criar-usuario';
-import { Login } from './login/login';
+import { Login } from './pages/login/login';
 import { Usuarios } from './pages/usuarios/usuarios';
 
 export const serverRoutes: Routes = [];
