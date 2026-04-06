@@ -1,20 +1,48 @@
 <div class="avaliacao-container">
-  <h2>Avalie nosso Quiz 🎮</h2>
+  <h2>Avalie nosso Quiz</h2>
 
   <p>O que você achou do sistema?</p>
 
   <label>Nota:</label>
-  <select>
-    <option value="1">1 - Muito ruim</option>
-    <option value="2">2 - Ruim</option>
-    <option value="3">3 - Regular</option>
-    <option value="4">4 - Bom</option>
-    <option value="5">5 - Excelente</option>
-  </select>
+<select [(ngModel)]="nota">
+  <option [ngValue]="1">1 - Muito ruim</option>
+  <option [ngValue]="2">2 - Ruim</option>
+  <option [ngValue]="3">3 - Regular</option>
+  <option [ngValue]="4">4 - Bom</option>
+  <option [ngValue]="5">5 - Excelente</option>
+</select>
 
   <p>Deixe um comentário:</p>
 
-  <textarea placeholder="Digite sua opinião..."></textarea>
+  <textarea
+    [(ngModel)]="comentario"
+    placeholder="Digite sua opinião...">
+  </textarea>
 
-  <button (click)="enviarAvaliacao()">Enviar Avaliação</button>
+  <br><br>
+
+  <button (click)="enviarAvaliacao()">
+    {{ editandoId ? 'Atualizar' : 'Enviar Avaliação' }}
+  </button>
+
+  <button *ngIf="editandoId" (click)="resetForm()">
+    Cancelar
+  </button>
+
+  <hr>
+
+  <h3>Avaliações</h3>
+
+  <ul>
+    <li *ngFor="let a of avaliacoes">
+      <div>
+       {{ a.nota }} - {{ a.comentario }}
+      </div>
+
+      <div>
+        <button (click)="editar(a)">Editar</button>
+        <button (click)="deletar(a.id)">Excluir</button>
+      </div>
+    </li>
+  </ul>
 </div>
