@@ -1,5 +1,12 @@
 {
   "sugestoes": [
-    { "id": 1, "texto": "Exemplo de sugestão" }
+    {
+      "texto": "ewqewqewq",
+      "id": 1
+    },
+    {
+      "texto": "wqrweqweqw",
+      "id": 2
+    }
   ]
 }

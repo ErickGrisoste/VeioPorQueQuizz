@@ -16,6 +16,8 @@ export class Sobre implements OnInit {
 
   sugestao: string = '';
   sugestoes: any[] = []; 
+  idEditando: number | null = null;
+  textoEditando: string = '';
 
   ngOnInit(): void {
     this.carregarSugestoes();
@@ -41,6 +43,44 @@ export class Sobre implements OnInit {
         this.sugestao = ''; 
       },
       error: (err) => alert('Erro ao salvar sugestão!')
+    });
+  }
+
+  removerSugestao(id: number): void {
+    if (confirm('Tem certeza que deseja excluir esta sugestão?')) {
+      this.http.delete(`${this.API_URL}/${id}`).subscribe({
+        next: () => {
+          this.sugestoes = this.sugestoes.filter(s => s.id !== id);
+        },
+        error: (err) => alert('Erro ao excluir sugestão!')
+      });
+    }
+  }
+
+  iniciarEdicao(s: any): void {
+    this.idEditando = s.id;
+    this.textoEditando = s.texto;
+  }
+
+  cancelarEdicao(): void {
+    this.idEditando = null;
+    this.textoEditando = '';
+  }
+
+  atualizarSugestao(): void {
+    if (!this.textoEditando.trim() || this.idEditando === null) return;
+
+    const sugestaoAtualizada = { texto: this.textoEditando.trim() };
+
+    this.http.put(`${this.API_URL}/${this.idEditando}`, sugestaoAtualizada).subscribe({
+      next: (response: any) => {
+        const index = this.sugestoes.findIndex(s => s.id === this.idEditando);
+        if (index !== -1) {
+          this.sugestoes[index] = response;
+        }
+        this.cancelarEdicao();
+      },
+      error: (err) => alert('Erro ao atualizar sugestão!')
     });
   }
 }

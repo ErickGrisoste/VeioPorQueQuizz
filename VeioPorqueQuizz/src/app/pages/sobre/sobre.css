@@ -36,6 +36,21 @@
   transform: translateY(0);
 }
 
+.delete-btn-hover:hover:not(:disabled) {
+  background-color: #dc3545;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(220, 53, 69, 0.2) !important;
+}
+
+.delete-btn-hover:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.edit-mode-container {
+  padding: 0.5rem 0;
+}
+
 .suggestion-item {
   transition: background-color 0.2s ease;
   background-color: #ffffff;
