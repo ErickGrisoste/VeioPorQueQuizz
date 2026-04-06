@@ -1,6 +1,7 @@
 {
   "sugestoes": [
     {
+<<<<<<< HEAD
       "id": "1",
       "texto": "Exemplo de sugestão"
     },
@@ -24,4 +25,14 @@
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
+=======
+      "texto": "ewqewqewq",
+      "id": 1
+    },
+    {
+      "texto": "wqrweqweqw",
+      "id": 2
+    }
+  ]
+>>>>>>> ddb4c94770b71bd0663cf854efe01a6a1827a250
 }
