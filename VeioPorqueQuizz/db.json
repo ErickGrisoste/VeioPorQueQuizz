@@ -1,5 +1,27 @@
 {
   "sugestoes": [
-    { "id": 1, "texto": "Exemplo de sugestão" }
-  ]
+    {
+      "id": "1",
+      "texto": "Exemplo de sugestão"
+    },
+    {
+      "texto": "ai calica",
+      "id": "k6jxutGO81A"
+    }
+  ],
+  "usuarios": [
+    {
+      "nome": "erick",
+      "email": "erick@email.com",
+      "senha": "123",
+      "id": "DEhSi2TdCTk"
+    },
+    {
+      "nome": "pedro",
+      "email": "pedro@email.com",
+      "senha": "123",
+      "id": "nm4vuXbYckQ"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UsuarioService } from '../../services/usuario-service';
 
 @Component({
   selector: 'app-criar-usuario',
@@ -16,6 +17,11 @@ export class CriarUsuario {
   confirmarSenha = "";
 
   erro = "";
+
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {}
 
   cadastrar() {
 
@@ -37,24 +43,21 @@ export class CriarUsuario {
       senha: this.senha
     };
 
-    const usuariosSalvos = localStorage.getItem("usuarios");
+    this.usuarioService.cadastrar(novoUsuario).subscribe({
+      next: () => {
+        alert("Usuário cadastrado com sucesso!");
 
-    let usuarios = [];
+        this.nome = "";
+        this.email = "";
+        this.senha = "";
+        this.confirmarSenha = "";
 
-    if (usuariosSalvos) {
-      usuarios = JSON.parse(usuariosSalvos);
-    }
-
-    usuarios.push(novoUsuario);
-
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-    alert("Usuário cadastrado com sucesso!");
-
-    this.nome = "";
-    this.email = "";
-    this.senha = "";
-    this.confirmarSenha = "";
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        console.error(err);
+        this.erro = "Erro ao cadastrar usuário";
+      }
+    });
   }
-
 }

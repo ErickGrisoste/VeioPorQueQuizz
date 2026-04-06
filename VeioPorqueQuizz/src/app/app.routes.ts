@@ -11,6 +11,7 @@ import { ListarQuizzes } from './pages/listar-quiz/listar-quiz';
 import { Avaliacao } from './pages/avaliacao/avaliacao';
 import { CriarUsuario } from './pages/criar-usuario/criar-usuario';
 import { Login } from './login/login';
+import { Usuarios } from './pages/usuarios/usuarios';
 
 export const serverRoutes: Routes = [];
 
@@ -28,4 +29,5 @@ export const routes: Routes = [
   { path: 'avaliacao', component: Avaliacao },
   { path: 'cadastro', component: CriarUsuario },
   { path: 'login', component: Login },
+  { path: 'usuarios', component: Usuarios }
 ];
