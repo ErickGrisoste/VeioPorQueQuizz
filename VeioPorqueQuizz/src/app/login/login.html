@@ -1,0 +1,29 @@
+<div class="container vh-100 d-flex align-items-center justify-content-center">
+
+  <div class="card shadow-lg p-4" style="width:400px">
+
+    <h2 class="text-center mb-4">Login</h2>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" [(ngModel)]="email">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Senha</label>
+      <input type="password" class="form-control" [(ngModel)]="senha">
+    </div>
+
+    @if (erro) {
+      <div class="alert alert-danger">
+        {{ erro }}
+      </div>
+    }
+
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" (click)="entrar()">Entrar</button>
+      <button class="btn btn-outline-primary" routerLink="/home">Voltar</button>
+    </div>
+
+  </div>
+</div>
